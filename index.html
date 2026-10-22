@@ -3,108 +3,425 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#101713">
-<title>The Beauty of Solitude</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#09251c">
+<title>The Beauty of Solitude | Obom</title>
+
 <style>
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
- margin:0;
- background:radial-gradient(ellipse at top,#293a30,#101713 65%);
- color:#f4eee1;
- font-family:Georgia,"Times New Roman",serif;
- min-height:100vh;
+:root {
+  --forest: #09251c;
+  --deep: #041710;
+  --gold: #d9bd79;
+  --cream: #f5eddb;
+  --muted: #c2c9bd;
 }
-main{max-width:800px;margin:auto;padding:35px 22px 60px}
-header{text-align:center;padding:50px 0 70px}
-.moon{
- width:65px;height:65px;border-radius:50%;
- background:linear-gradient(135deg,#fff2c8,#c7a66b);
- margin:0 auto 35px;
- box-shadow:0 0 45px #d8bc8033;
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  background:
+    radial-gradient(ellipse at 50% 0%, #254936 0%, transparent 52%),
+    linear-gradient(160deg, var(--forest), var(--deep));
+  line-height: 1.8;
+  overflow-x: hidden;
 }
-.small{
- color:#d7bb83;font:11px Arial,sans-serif;
- letter-spacing:4px;text-transform:uppercase;
+body::before {
+  content: "✦  ·   ✧       ·     ✦       ·  ✧";
+  position: fixed;
+  inset: 0;
+  padding: 30px 12px;
+  color: #d9bd7950;
+  font-size: 22px;
+  letter-spacing: 18px;
+  pointer-events: none;
+  z-index: 0;
+  animation: stars 7s ease-in-out infinite alternate;
 }
-h1{font-size:clamp(42px,9vw,76px);font-weight:normal;line-height:1.08;margin:22px 0}
-.subtitle{font-size:20px;line-height:1.7;color:#d0cfc5;font-style:italic}
-button{
- margin-top:25px;padding:16px 25px;
- border:1px solid #d7bb83;background:transparent;
- color:#f4eee1;letter-spacing:2px;cursor:pointer;
+@keyframes stars {
+  from { opacity: .25; }
+  to { opacity: .8; }
 }
-#story{scroll-margin-top:25px}
-.quote{
- padding:35px 22px;margin:20px 0;text-align:center;
- border:1px solid #d7bb8333;
- background:#ffffff06;
- opacity:0;transform:translateY(20px);
- transition:opacity 1s,transform 1s;
+main {
+  position: relative;
+  z-index: 1;
+  width: min(760px, 100%);
+  margin: auto;
+  padding: 30px 22px 70px;
 }
-.quote.show{opacity:1;transform:translateY(0)}
-.label{
- color:#d7bb83;font:11px Arial,sans-serif;
- letter-spacing:3px;text-transform:uppercase;margin-bottom:22px;
+header {
+  min-height: 82vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
-p.words{font-size:clamp(22px,4.5vw,31px);line-height:1.8;margin:0}
-.final p.words{font-size:clamp(28px,6vw,42px);color:#f1dba9}
-.closing{text-align:center;padding:65px 0 35px;font-style:italic;line-height:1.8}
-footer{text-align:center;color:#92998e;font:10px Arial,sans-serif;letter-spacing:2px}
-@media(prefers-reduced-motion:reduce){*{transition:none;scroll-behavior:auto}}
+.moon {
+  font-size: 75px;
+  color: var(--gold);
+  line-height: 1.4;
+  text-shadow: 0 0 35px #d9bd7970;
+  animation: moonGlow 4s ease-in-out infinite alternate;
+}
+@keyframes moonGlow {
+  to { text-shadow: 0 0 65px #d9bd79b0; }
+}
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--gold);
+  font-size: 11px;
+}
+h1 {
+  font-size: clamp(37px, 8vw, 62px);
+  font-weight: normal;
+  line-height: 1.15;
+  margin: 12px 0;
+}
+h1 span { color: var(--gold); font-style: italic; }
+.subtitle {
+  color: var(--muted);
+  max-width: 470px;
+  font-size: 16px;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid var(--gold);
+  border-radius: 30px;
+  padding: 11px 20px;
+  color: var(--cream);
+  background: #173c2d;
+  transition: background .3s, transform .3s;
+}
+button:hover { background: #28523e; transform: translateY(-2px); }
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+section {
+  margin: 25px 0 55px;
+  text-align: center;
+}
+.section-title {
+  color: var(--gold);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: 22px;
+}
+.quote {
+  border: 1px solid #d9bd7945;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #173b2bdb, #0a2019eb);
+  padding: 28px 24px;
+  margin: 18px 0;
+  box-shadow: 0 15px 45px #00000020;
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .9s ease, transform .9s ease;
+}
+.quote.visible { opacity: 1; transform: translateY(0); }
+.quote-mark {
+  color: var(--gold);
+  font-size: 35px;
+  line-height: 1;
+}
+.quote p {
+  font-size: clamp(17px, 4vw, 21px);
+  font-style: italic;
+}
+.reflection {
+  color: var(--muted);
+  font-size: 15px;
+}
+.divider {
+  color: var(--gold);
+  letter-spacing: 9px;
+  margin: 35px 0;
+}
+.closing {
+  padding: 30px 18px;
+  border-top: 1px solid #d9bd7950;
+  border-bottom: 1px solid #d9bd7950;
+}
+.closing h2 {
+  color: var(--gold);
+  font-size: 30px;
+  font-weight: normal;
+}
+.closing p { font-size: 18px; }
+footer {
+  text-align: center;
+  color: #aebbae;
+  font-size: 12px;
+  padding-top: 35px;
+}
+.small { color: var(--gold); font-style: italic; }
+#soundStatus { color: var(--muted); font-size: 12px; }
 </style>
 </head>
+
 <body>
 <main>
 <header>
- <div class="moon"></div>
- <div class="small">A quiet reflection</div>
- <h1>The Beauty<br>of Solitude</h1>
- <p class="subtitle">Sometimes silence is where we find ourselves again.</p>
- <button onclick="begin()">ENTER THE SILENCE ↓</button>
+  <div class="moon" aria-hidden="true">☾</div>
+  <div class="eyebrow">A little sanctuary for the soul</div>
+  <h1>The Beauty of <span>Solitude</span></h1>
+  <p class="subtitle">
+    A quiet moment for Obom — a reminder that she deserves
+    the same kindness, patience, and love she gives to the world.
+  </p>
+  <div class="controls">
+    <button id="enterBtn">Enter the silence ✦</button>
+  </div>
+  <div class="controls">
+    <button id="soundBtn" aria-pressed="false">♫ Play peaceful sounds</button>
+    <button id="rainBtn" aria-pressed="false">☔ Rain: Off</button>
+  </div>
+  <p id="soundStatus">Sounds begin only when you choose to play them.</p>
 </header>
 
 <section id="story">
- <article class="quote">
-  <div class="label">Reflection I</div>
-  <p class="words">“I choose solitude when life gets overwhelming, not because I have given up, but because sometimes, I need silence to understand myself and find my peace again.”</p>
- </article>
+  <div class="section-title">Words from her heart</div>
 
- <article class="quote">
-  <div class="label">Reflection II</div>
-  <p class="words">“When my heart gets heavy, I retreat from the world. In the silence, I face my feelings, gather my strength, and remind myself that even this moment will pass.”</p>
- </article>
+  <article class="quote">
+    <div class="quote-mark">“</div>
+    <p>
+      I choose solitude when life gets overwhelming, not because
+      I have given up, but because sometimes, I need silence to
+      understand myself and find my peace again.
+    </p>
+    <div class="reflection">
+      Obom, you are allowed to pause. You do not have to carry
+      everything at once. Rest is not weakness, and choosing peace
+      is not giving up on life.
+    </div>
+  </article>
 
- <article class="quote final">
-  <div class="label">A thought to keep</div>
-  <p class="words">“I go silent to find my peace, not because I've lost my voice.”</p>
- </article>
+  <div class="divider">✦ · ✧ · ✦</div>
+
+  <article class="quote">
+    <div class="quote-mark">“</div>
+    <p>
+      When my heart gets heavy, I retreat from the world.
+      In the silence, I face my feelings, gather my strength,
+      and remind myself that even this moment will pass.
+    </p>
+    <div class="reflection">
+      And it will pass, Obom. Give yourself permission to feel
+      without judging your heart. You are growing even on the
+      days when all you can do is breathe and try again.
+    </div>
+  </article>
+
+  <div class="divider">✦ · ✧ · ✦</div>
+
+  <article class="quote">
+    <div class="quote-mark">“</div>
+    <p>
+      I go silent to find my peace, not because I've lost my voice.
+    </p>
+    <div class="reflection">
+      Your voice still matters, Obom. Your dreams still matter.
+      You can be gentle and still be strong. You can be quiet
+      and still have a thousand beautiful things within you.
+    </div>
+  </article>
 </section>
 
-<div class="closing">
- May you always find your way back to yourself.
- <br><span class="small">Be gentle with your heart</span>
-</div>
-<footer>THE BEAUTY OF SOLITUDE · A MESSAGE FOR THE SOUL</footer>
+<section>
+  <div class="section-title">A gentle reminder</div>
+  <div class="closing quote visible">
+    <h2>Dear Obom,</h2>
+    <p>
+      You do not need to become someone else to deserve love.
+      You do not have to be perfect to be beautiful.
+      You do not need everyone's approval to know your worth.
+    </p>
+    <p>
+      Speak to yourself with tenderness. Celebrate the little
+      things you survive. Forgive yourself for the days you
+      feel lost. Let your heart rest when it needs rest.
+    </p>
+    <p class="small">
+      You are a work in progress, not a work without value.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="section-title">Before you leave</div>
+  <article class="quote visible">
+    <p>
+      I am allowed to grow slowly.<br>
+      I am allowed to begin again.<br>
+      I am allowed to choose myself.<br>
+      I am worthy of the love I give away.
+    </p>
+    <p class="small">With gentleness, from me to me.</p>
+  </article>
+</section>
+
+<footer>
+  <div class="moon" style="font-size:35px">☾</div>
+  <p>The Beauty of Solitude</p>
+  <p>Created for Obom · A reminder to return to yourself.</p>
+</footer>
 </main>
 
 <script>
-function begin(){
- document.getElementById('story').scrollIntoView({behavior:'smooth'});
- document.querySelectorAll('.quote').forEach((q,i)=>{
-  setTimeout(()=>q.classList.add('show'),300+i*650);
- });
-}
-const observer=new IntersectionObserver(entries=>{
- entries.forEach(e=>{
-  if(e.isIntersecting){
-   e.target.classList.add('show');
-   observer.unobserve(e.target);
+const enterBtn = document.getElementById("enterBtn");
+const soundBtn = document.getElementById("soundBtn");
+const rainBtn = document.getElementById("rainBtn");
+const statusText = document.getElementById("soundStatus");
+
+enterBtn.addEventListener("click", () => {
+  document.getElementById("story").scrollIntoView({behavior:"smooth"});
+});
+
+const quotes = document.querySelectorAll(".quote");
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, {threshold: 0.12});
+quotes.forEach(q => observer.observe(q));
+
+let audioContext = null;
+let masterGain = null;
+let musicTimer = null;
+let musicOn = false;
+let rainOn = false;
+let rainSource = null;
+let rainGain = null;
+let rainBuffer = null;
+
+function setupAudio() {
+  if (audioContext) {
+    if (audioContext.state === "suspended") audioContext.resume();
+    return;
   }
- });
-},{threshold:0.15});
-document.querySelectorAll('.quote').forEach(q=>observer.observe(q));
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  if (!AudioCtx) {
+    statusText.textContent = "Audio is not supported by this browser.";
+    return;
+  }
+  audioContext = new AudioCtx();
+  masterGain = audioContext.createGain();
+  masterGain.gain.value = 0.22;
+  masterGain.connect(audioContext.destination);
+}
+
+function playNote(freq, start, duration, volume) {
+  if (!audioContext || !masterGain) return;
+  const osc = audioContext.createOscillator();
+  const gain = audioContext.createGain();
+  osc.type = "sine";
+  osc.frequency.value = freq;
+  gain.gain.setValueAtTime(0.0001, start);
+  gain.gain.exponentialRampToValueAtTime(volume, start + 0.08);
+  gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+  osc.connect(gain);
+  gain.connect(masterGain);
+  osc.start(start);
+  osc.stop(start + duration + 0.05);
+}
+
+function musicLoop() {
+  if (!musicOn || !audioContext) return;
+  const now = audioContext.currentTime;
+  // A gentle original sequence of soft, piano-like tones.
+  const notes = [
+    [261.63,0], [329.63,0.65], [392.00,1.3],
+    [329.63,2.0], [293.66,2.7], [349.23,3.35],
+    [440.00,4.0], [349.23,4.7]
+  ];
+  notes.forEach(([freq, offset]) =>
+    playNote(freq, now + offset, 2.2, 0.10)
+  );
+  musicTimer = setTimeout(musicLoop, 6200);
+}
+
+function startRain() {
+  if (!audioContext || rainSource) return;
+  const length = audioContext.sampleRate * 3;
+  rainBuffer = audioContext.createBuffer(1, length, audioContext.sampleRate);
+  const data = rainBuffer.getChannelData(0);
+  for (let i = 0; i < length; i++) data[i] = Math.random() * 2 - 1;
+
+  const source = audioContext.createBufferSource();
+  source.buffer = rainBuffer;
+  source.loop = true;
+
+  const filter = audioContext.createBiquadFilter();
+  filter.type = "lowpass";
+  filter.frequency.value = 900;
+
+  rainGain = audioContext.createGain();
+  rainGain.gain.value = 0.0001;
+
+  source.connect(filter);
+  filter.connect(rainGain);
+  rainGain.connect(masterGain);
+  source.start();
+  rainSource = source;
+
+  rainGain.gain.setTargetAtTime(0.055, audioContext.currentTime, 0.5);
+}
+
+function stopRain() {
+  if (rainGain && audioContext) {
+    rainGain.gain.setTargetAtTime(0.0001, audioContext.currentTime, 0.15);
+  }
+  if (rainSource) {
+    const oldSource = rainSource;
+    setTimeout(() => {
+      try { oldSource.stop(); } catch(e) {}
+    }, 800);
+    rainSource = null;
+  }
+}
+
+soundBtn.addEventListener("click", async () => {
+  setupAudio();
+  if (!audioContext) return;
+  await audioContext.resume();
+  musicOn = !musicOn;
+  if (musicOn) {
+    musicLoop();
+    soundBtn.textContent = "♫ Pause peaceful sounds";
+  } else {
+    clearTimeout(musicTimer);
+    soundBtn.textContent = "♫ Play peaceful sounds";
+  }
+  soundBtn.setAttribute("aria-pressed", String(musicOn));
+  statusText.textContent = musicOn
+    ? "Peaceful tones are playing. Use the buttons to control sound."
+    : "The tones are paused.";
+});
+
+rainBtn.addEventListener("click", async () => {
+  setupAudio();
+  if (!audioContext) return;
+  await audioContext.resume();
+  rainOn = !rainOn;
+  if (rainOn) startRain();
+  else stopRain();
+  rainBtn.textContent = rainOn ? "☔ Rain: On" : "☔ Rain: Off";
+  rainBtn.setAttribute("aria-pressed", String(rainOn));
+  statusText.textContent = rainOn
+    ? "Gentle rain ambience is enabled."
+    : "Rain ambience is off.";
+});
 </script>
 </body>
 </html>
