@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101713">
+<title>The Beauty of Solitude</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ margin:0;
+ background:radial-gradient(ellipse at top,#293a30,#101713 65%);
+ color:#f4eee1;
+ font-family:Georgia,"Times New Roman",serif;
+ min-height:100vh;
+}
+main{max-width:800px;margin:auto;padding:35px 22px 60px}
+header{text-align:center;padding:50px 0 70px}
+.moon{
+ width:65px;height:65px;border-radius:50%;
+ background:linear-gradient(135deg,#fff2c8,#c7a66b);
+ margin:0 auto 35px;
+ box-shadow:0 0 45px #d8bc8033;
+}
+.small{
+ color:#d7bb83;font:11px Arial,sans-serif;
+ letter-spacing:4px;text-transform:uppercase;
+}
+h1{font-size:clamp(42px,9vw,76px);font-weight:normal;line-height:1.08;margin:22px 0}
+.subtitle{font-size:20px;line-height:1.7;color:#d0cfc5;font-style:italic}
+button{
+ margin-top:25px;padding:16px 25px;
+ border:1px solid #d7bb83;background:transparent;
+ color:#f4eee1;letter-spacing:2px;cursor:pointer;
+}
+#story{scroll-margin-top:25px}
+.quote{
+ padding:35px 22px;margin:20px 0;text-align:center;
+ border:1px solid #d7bb8333;
+ background:#ffffff06;
+ opacity:0;transform:translateY(20px);
+ transition:opacity 1s,transform 1s;
+}
+.quote.show{opacity:1;transform:translateY(0)}
+.label{
+ color:#d7bb83;font:11px Arial,sans-serif;
+ letter-spacing:3px;text-transform:uppercase;margin-bottom:22px;
+}
+p.words{font-size:clamp(22px,4.5vw,31px);line-height:1.8;margin:0}
+.final p.words{font-size:clamp(28px,6vw,42px);color:#f1dba9}
+.closing{text-align:center;padding:65px 0 35px;font-style:italic;line-height:1.8}
+footer{text-align:center;color:#92998e;font:10px Arial,sans-serif;letter-spacing:2px}
+@media(prefers-reduced-motion:reduce){*{transition:none;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<main>
+<header>
+ <div class="moon"></div>
+ <div class="small">A quiet reflection</div>
+ <h1>The Beauty<br>of Solitude</h1>
+ <p class="subtitle">Sometimes silence is where we find ourselves again.</p>
+ <button onclick="begin()">ENTER THE SILENCE ↓</button>
+</header>
+
+<section id="story">
+ <article class="quote">
+  <div class="label">Reflection I</div>
+  <p class="words">“I choose solitude when life gets overwhelming, not because I have given up, but because sometimes, I need silence to understand myself and find my peace again.”</p>
+ </article>
+
+ <article class="quote">
+  <div class="label">Reflection II</div>
+  <p class="words">“When my heart gets heavy, I retreat from the world. In the silence, I face my feelings, gather my strength, and remind myself that even this moment will pass.”</p>
+ </article>
+
+ <article class="quote final">
+  <div class="label">A thought to keep</div>
+  <p class="words">“I go silent to find my peace, not because I've lost my voice.”</p>
+ </article>
+</section>
+
+<div class="closing">
+ May you always find your way back to yourself.
+ <br><span class="small">Be gentle with your heart</span>
+</div>
+<footer>THE BEAUTY OF SOLITUDE · A MESSAGE FOR THE SOUL</footer>
+</main>
+
+<script>
+function begin(){
+ document.getElementById('story').scrollIntoView({behavior:'smooth'});
+ document.querySelectorAll('.quote').forEach((q,i)=>{
+  setTimeout(()=>q.classList.add('show'),300+i*650);
+ });
+}
+const observer=new IntersectionObserver(entries=>{
+ entries.forEach(e=>{
+  if(e.isIntersecting){
+   e.target.classList.add('show');
+   observer.unobserve(e.target);
+  }
+ });
+},{threshold:0.15});
+document.querySelectorAll('.quote').forEach(q=>observer.observe(q));
+</script>
+</body>
+</html>
